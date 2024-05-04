@@ -1,3 +1,7 @@
+<button mat-icon-button  color="primary" (click)="add()">
+  <mat-icon color="primary">add</mat-icon>
+</button>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-8">
 
     <ng-container matColumnDef="Id">
@@ -23,11 +27,11 @@
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button (click)="onEditItem(element)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button (click)="onDeleteItem(element.id)">
-          <mat-icon>delete</mat-icon>
+        <button mat-icon-button color="primary" (click)="onEditItem(element)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button> &nbsp;
+        <button mat-icon-button  color="warn" (click)="onDeleteItem(element)">
+          <mat-icon color="warn">delete</mat-icon>
         </button>
       </td>
     </ng-container>

@@ -18,7 +18,7 @@ export class DialogComponent {
 
 
 
-  closeDialog(obj: any = null): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 }

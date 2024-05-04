@@ -17,11 +17,8 @@
 </table>
 
 <div mat-dialog-content style=" overflow: visible; height: 100%">
-   
-
-    <app-form *ngIf="data.args?.detailsName == 'app-form'" [data]="data.data" ></app-form>
-    <app-confirmation *ngIf="data.args?.detailsName == 'app-confirmation'" [data]="data.data" ></app-confirmation>
-
+    <app-form *ngIf="data.args?.detailsName == 'app-form'" [data]="data.data" [args]="data.args" ></app-form>
+    <app-confirmation *ngIf="data.args?.detailsName == 'app-confirmation'" [data]="data" ></app-confirmation>
 </div>
 
 

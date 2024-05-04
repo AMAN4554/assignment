@@ -1,5 +1,5 @@
 export class ItemData{
-    Id?:number;
+    Id!:number;
     Name?: string;
     Description?: string;
     Category?: number;

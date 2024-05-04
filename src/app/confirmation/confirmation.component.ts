@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,12 +6,13 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './confirmation.component.html',
   styleUrl: './confirmation.component.scss'
 })
-export class ConfirmationComponent {
+export class ConfirmationComponent{
+
 @Input() data:any;
 
 constructor(
-  public dialogRef: MatDialogRef<ConfirmationComponent>,
-) {}
+  public dialogRef: MatDialogRef<ConfirmationComponent>) {}
+
 
 onConfirm() {
   this.dialogRef.close(true);
