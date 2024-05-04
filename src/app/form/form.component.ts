@@ -14,7 +14,7 @@ export class FormComponent {
   @Input() data: any;
   @Input() args:any;
   editForm!: FormGroup;
-  Categories: string[] = ['other', 'electronics', 'clothing', 'books'];
+  Categories: string[] = ['Electronics','Clothing', 'Books',   'Others'];
 
   constructor(private fb: FormBuilder, private itemService: ItemsService,private dialog: MatDialogRef<FormComponent>) { }
 
