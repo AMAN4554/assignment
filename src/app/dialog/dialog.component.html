@@ -1,0 +1,27 @@
+<table width="100%">
+    <tbody>
+        <tr>
+            <td width="80%" cdkDrag
+            cdkDragRootElement=".cdk-overlay-pane"
+            cdkDragHandle >
+                <span mat-dialog-title class="ml-1"
+                    style="color: rgba(0,112,221,1); display: inline; font-size: 14px;">{{data.args.title}}</span>
+            </td>
+            <td style="width:20%; text-align: right;">
+                <span class="material-icons btn-danger" (click)="closeDialog()" title="Press escape to close dialog">
+                    close
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div mat-dialog-content style=" overflow: visible; height: 100%">
+   
+
+    <app-form *ngIf="data.args?.detailsName == 'app-form'" [data]="data.data" ></app-form>
+    <app-confirmation *ngIf="data.args?.detailsName == 'app-confirmation'" [data]="data.data" ></app-confirmation>
+
+</div>
+
+

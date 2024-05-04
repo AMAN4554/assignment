@@ -1,0 +1,19 @@
+.btn-danger {
+    cursor: pointer;
+    transition: all linear .2s;
+}
+
+    .btn-danger:hover {
+        background-color: white;
+        color: #dc3545;
+    }
+
+    .fieldTextLabel {
+        margin-top: 10px;
+    }
+    
+    .field-div {
+        flex-grow: 1;
+        padding: 0 10px 0 10px;
+    }
+
