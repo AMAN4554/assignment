@@ -30,12 +30,12 @@ export class ItemsService {
 
   updateItem(updatedItem:any) {
     const Options = this.getOptions();
-    return this.http.put<ItemData[]>(this.apiUrl+'/'+updatedItem['Id'], updatedItem, Options);
+    return this.http.put<ItemData[]>(this.apiUrl+'/'+updatedItem['id'], updatedItem);
   }
 
   deleteItem(itemId: number){
     const Options = this.getOptions();
-    return this.http.delete<any>(this.apiUrl+'/'+itemId, Options);
+    return this.http.delete<any>(this.apiUrl+'/'+itemId);
     
   }
 }

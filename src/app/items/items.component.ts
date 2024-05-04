@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ItemData } from '../items-class';
 import { ItemsService } from '../items.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-items',
@@ -13,10 +12,11 @@ import { FormComponent } from '../form/form.component';
 export class ItemsComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['Id', 'Name', 'Category', 'Description', 'Actions'];
+  displayedColumns: string[] = ['sr','name', 'category', 'description', 'actions'];
   items: ItemData[] = [];
 
   dataSource!: ItemData[];
+  currentSerialNo: number = 1;
 
   constructor(private itemsService: ItemsService, private dialog: MatDialog) { }
 
@@ -31,6 +31,9 @@ export class ItemsComponent implements OnInit {
         this.dataSource = items;
       });
   }
+  getNextIndex() {
+    return ++this.currentSerialNo;
+  }
 
   add() {
     let dialogRef = this.dialog.open(DialogComponent, {
@@ -38,15 +41,15 @@ export class ItemsComponent implements OnInit {
       minWidth: '25vw',
       disableClose: true,
       data: {
-        data:null,
+        data: null,
         args: {
-          detailsName: 'app-form', title: `Add New Item`, Id: this.items.length+1,
+          detailsName: 'app-form', title: `Add New Item`, id: this.items.length + 1,
         }
       },
-      
+
     });
-    dialogRef.afterClosed().subscribe( ()=>{
-this.loadItems();
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadItems();
     });
   }
 
@@ -56,16 +59,16 @@ this.loadItems();
       minWidth: '25vw',
       disableClose: true,
       data: {
-        data:item,
+        data: item,
         args: {
-          detailsName: 'app-form', title: `Update Item ${item.Name}`, 
+          detailsName: 'app-form', title: `Update Item ${item.name}`,
         }
       },
-      
+
     });
-    dialogRef.afterClosed().subscribe( ()=>{
+    dialogRef.afterClosed().subscribe(() => {
       this.loadItems();
-          });
+    });
   }
 
   onDeleteItem(item: any) {
@@ -74,19 +77,19 @@ this.loadItems();
       minWidth: '25vw',
       disableClose: true,
       data: {
-        message: `Are You Sure? \n Do You want to Delete Item?`, caption: item.Name,
+        message: `Are You Sure? \n Do You want to Delete Item?`, caption: item.name,
         args: {
-          detailsName: 'app-confirmation', title: item.Name, 
+          detailsName: 'app-confirmation', title: item.name,
         }
       },
-      
     });
+
     dialogRef.afterClosed().subscribe((res: any) => {
       if (res == true) {
         try {
-          this.itemsService.deleteItem(item.Id)
+          this.itemsService.deleteItem(item.id)
             .subscribe(() => {
-              this.items = this.items.filter(ele => ele.Id != item.Id);
+              this.items = this.items.filter(ele => ele.id != item.id);
               this.dataSource = this.items;
             });
         } catch (err) {

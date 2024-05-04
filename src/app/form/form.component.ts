@@ -13,23 +13,25 @@ export class FormComponent {
 
   @Input() data: any;
   @Input() args:any;
+
   editForm!: FormGroup;
-  Categories: string[] = ['Electronics','Clothing', 'Books',   'Others'];
+  Categories: string[] = ['Electronics','Clothing', 'Books', 'Others'];
 
   constructor(private fb: FormBuilder, private itemService: ItemsService,private dialog: MatDialogRef<FormComponent>) { }
 
   ngOnInit() {
     if(this.data != null){
       this.editForm = this.fb.group({
-        Name: [this.data?.Name, Validators.required], // Use optional chaining if data might be undefined
-        Description: [this.data?.Description, Validators.required],
-        Category: [this.data?.Category, Validators.required]
+        name: [this.data?.name, Validators.required], // Use optional chaining if data might be undefined
+        description: [this.data?.description, Validators.required],
+        category: [this.data?.category, Validators.required]
       });
     }else{
       this.editForm = this.fb.group({
-        Name: ['', Validators.required], // Use optional chaining if data might be undefined
-        Description: ['', Validators.required],
-        Category: ['', Validators.required]
+        name: ['', Validators.required], // Use optional chaining if data might be undefined
+        description: ['', Validators.required],
+        category: ['', Validators.required],
+        actions: [true]
       });
       
     }
@@ -39,7 +41,7 @@ export class FormComponent {
     if (this.editForm.valid) {
       const updatedItem: ItemData = {
         ...this.editForm.value,
-        Id: this.data == null ? this.args.Id : (this.data && this.data.Id)// Assuming data has an Id property
+        id: this.data == null ? this.args.id : (this.data && this.data.id)// Assuming data has an Id property
       };
       if(this.data != null){
 
